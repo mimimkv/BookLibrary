@@ -1,6 +1,7 @@
 package com.example.booklibrary.dto;
 
 import com.example.booklibrary.model.Book;
+import com.example.booklibrary.model.Author;
 import com.example.booklibrary.model.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class BookDto {
     private String title;
-    private String author;
+    private Author author;
     private Category category;
 
     public static Book mapToBook(BookDto bookDto) {

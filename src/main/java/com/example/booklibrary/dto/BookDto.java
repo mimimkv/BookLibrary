@@ -1,5 +1,6 @@
 package com.example.booklibrary.dto;
 
+import com.example.booklibrary.model.Book;
 import com.example.booklibrary.model.Author;
 import com.example.booklibrary.model.enums.Category;
 import lombok.AllArgsConstructor;
@@ -11,4 +12,13 @@ public class BookDto {
     private String title;
     private Author author;
     private Category category;
+
+    public static Book mapToBook(BookDto bookDto) {
+        Book book = new Book();
+        book.setTitle(bookDto.getTitle());
+        book.setAuthor(bookDto.getAuthor());
+        book.setCategory(bookDto.getCategory());
+
+        return book;
+    }
 }

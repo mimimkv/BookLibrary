@@ -3,51 +3,78 @@ package com.example.booklibrary.controller;
 import com.example.booklibrary.dto.BookDto;
 import com.example.booklibrary.exceptions.BookNotFoundException;
 import com.example.booklibrary.model.Book;
-import com.example.booklibrary.repository.BookRepository;
+import com.example.booklibrary.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/library") //-> localhost:8080/library
 public class BookController {
-    private static final String BOOK_NOT_FOUND_MESSAGE_TEMPLATE = "Book with isbn %d not found";
 
-    private final BookRepository bookRepository;
+    private final BookService bookService;
 
     @Autowired
-    public BookController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @GetMapping("/books")
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        return bookService.getAllBooks();
+    }
+
+    @GetMapping("/books/{isbn}")
+    public ResponseEntity<Book> getBookByIsbn(@PathVariable Long isbn) {
+        Book book;
+        try {
+            book = bookService.getBookByIsbn(isbn);
+        } catch (BookNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return ResponseEntity.ok(book);
     }
 
     @PostMapping("/books")
     public Book addBook(@RequestBody BookDto bookDto) {
-        Book book = new Book();
-        book.setTitle(bookDto.getTitle());
-        book.setAuthor(bookDto.getAuthor());
-        book.setCategory(bookDto.getCategory());
+        return bookService.createBook(bookDto);
+    }
 
-        return bookRepository.save(book);
+    @PutMapping("/books/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto) {
+        Book book;
+        try {
+            book = bookService.updateBook(id, bookDto);
+        } catch (BookNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return ResponseEntity.ok(book);
     }
 
     @DeleteMapping("/books/{isbn}")
-    public void delete(@PathVariable Long isbn) throws BookNotFoundException {
-        if (!bookRepository.existsById(isbn)) {
-            throw new BookNotFoundException(String.format(BOOK_NOT_FOUND_MESSAGE_TEMPLATE, isbn));
+    public ResponseEntity<Map<String, Boolean>> deleteBook(@PathVariable Long isbn) {
+        try {
+            bookService.deleteBook(isbn);
+        } catch (BookNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        bookRepository.deleteById(isbn);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }

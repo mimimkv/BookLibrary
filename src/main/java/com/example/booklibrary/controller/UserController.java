@@ -1,9 +1,8 @@
 package com.example.booklibrary.controller;
 
-import com.example.booklibrary.dto.BorrowDto;
 import com.example.booklibrary.dto.UserDto;
+import com.example.booklibrary.exceptions.BookNotFoundException;
 import com.example.booklibrary.exceptions.UserNotFoundException;
-import com.example.booklibrary.model.Borrow;
 import com.example.booklibrary.model.User;
 import com.example.booklibrary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -56,6 +56,18 @@ public class UserController {
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
 
+    @GetMapping("/users/email")
+    public ResponseEntity<UserDto> getUserByEmail(@RequestParam String email) {
+        User user;
+        try {
+            user = userService.getUserByEmail(email);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
+    }
+
     @PostMapping("/users")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         User user = userService.createUser(User.from(userDto));
@@ -63,12 +75,12 @@ public class UserController {
 
     }
 
-    @PostMapping("/users/{userId}/borrow/")
-    public ResponseEntity<UserDto> borrowBook(@PathVariable Long userId, BorrowDto borrowDto) {
+    @PostMapping("/users/{userId}/borrow/{bookIsbn}")
+    public ResponseEntity<UserDto> borrowBook(@PathVariable Long userId, @PathVariable Long bookIsbn) {
         User user;
         try {
-            user = userService.borrowBook(userId, borrowDto);
-        } catch (UserNotFoundException e) {
+            user = userService.borrowBook(userId, bookIsbn);
+        } catch (UserNotFoundException | BookNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -87,8 +99,8 @@ public class UserController {
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
 
-    
-    @DeleteMapping("users/{id}")
+
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUser(id);

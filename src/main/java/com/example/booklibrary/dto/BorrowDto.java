@@ -10,6 +10,7 @@ public class BorrowDto {
     private Long id;
     private String borrowDate;
     private PlainUserDto plainUserDto;
+    private PlainBookDto plainBookDto;
 
     public static BorrowDto from(Borrow borrow) {
         System.out.println(borrow.getBorrowDate());
@@ -18,6 +19,9 @@ public class BorrowDto {
         borrowDto.setBorrowDate(borrow.getBorrowDate());
         if (Objects.nonNull(borrow.getUser())) {
             borrowDto.setPlainUserDto(PlainUserDto.from(borrow.getUser()));
+        }
+        if (Objects.nonNull(borrow.getBook())) {
+            borrowDto.setPlainBookDto(PlainBookDto.from(borrow.getBook()));
         }
 
         return borrowDto;

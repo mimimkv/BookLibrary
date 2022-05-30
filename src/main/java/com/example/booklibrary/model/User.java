@@ -40,8 +40,9 @@ public class User implements Serializable {
     @CreatedDate
     private LocalDate joinedDate;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "borrow_id")
+    //@OneToMany(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<Borrow> borrows = new ArrayList<>();
 
     public static User from(UserDto userDto) {

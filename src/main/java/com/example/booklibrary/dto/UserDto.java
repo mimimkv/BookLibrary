@@ -3,6 +3,8 @@ package com.example.booklibrary.dto;
 import com.example.booklibrary.model.User;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,8 +12,11 @@ import java.util.stream.Collectors;
 @Data
 public class UserDto {
     private Long id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
+    @Email
     private String email;
     private List<BorrowDto> borrowDtoList = new ArrayList<>();
 

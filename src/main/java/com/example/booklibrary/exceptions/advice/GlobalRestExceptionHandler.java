@@ -16,18 +16,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalRestExceptionHandler {
 
-    private static final String ERROR_TEMPLATE_MSG = "{ \"error\": \"%s\" }";
+    private static final String ERROR_MESSAGE_TEMPLATE = "{ \"error\": \"%s\" }";
 
-    @ExceptionHandler(UserNotFoundException.class)
-    @ResponseBody
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Object> handleNotFound(UserNotFoundException e) {
-        System.out.println("handle");
-        String bodyOfResponse = String.format(ERROR_TEMPLATE_MSG, e.getMessage());
-        return new ResponseEntity<>(bodyOfResponse, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity<Object> handleNotFound(ObjectNotFoundException e) {
+        String bodyOfResponse = String.format(ERROR_MESSAGE_TEMPLATE, e.getMessage());
+        return new ResponseEntity<>(bodyOfResponse, HttpStatus.NOT_FOUND);
     }
-
-    /*public ResponseEntity<Object> handleUserNotFound(UserNotFoundException e) {
-        return new Re
-    }*/
 }

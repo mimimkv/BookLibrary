@@ -24,7 +24,7 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book getBookByIsbn(Long isbn) throws BookNotFoundException {
+    public Book getBookByIsbn(Long isbn) {
         return bookRepository.findById(isbn).orElseThrow(
                 () -> new BookNotFoundException(String.format(BOOK_NOT_FOUND_MESSAGE_TEMPLATE, isbn)));
     }
@@ -33,7 +33,7 @@ public class BookService {
         return bookRepository.save(BookDto.mapToBook(bookDto));
     }
 
-    public Book updateBook(Long id, BookDto bookDto) throws BookNotFoundException {
+    public Book updateBook(Long id, BookDto bookDto) {
         if (!bookExists(id)) {
             throw new BookNotFoundException(String.format(BOOK_NOT_FOUND_MESSAGE_TEMPLATE, id));
         }
@@ -41,7 +41,7 @@ public class BookService {
         return bookRepository.save(BookDto.mapToBook(bookDto));
     }
 
-    public void deleteBook(Long id) throws BookNotFoundException {
+    public void deleteBook(Long id) {
         if (!bookExists(id)) {
             throw new BookNotFoundException(String.format(BOOK_NOT_FOUND_MESSAGE_TEMPLATE, id));
         }

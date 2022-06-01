@@ -1,6 +1,8 @@
 package com.example.booklibrary.exceptions;
 
-public class BookNotFoundException extends Exception {
+import java.util.NoSuchElementException;
+
+public class BookNotFoundException extends ObjectNotFoundException {
 
     public BookNotFoundException(String message) {
         super(message);

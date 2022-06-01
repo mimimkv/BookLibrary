@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -22,9 +23,9 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private BorrowService borrowService;
+    private final BorrowService borrowService;
 
-    private BookService bookService;
+    private final BookService bookService;
 
     @Autowired
     public UserService(UserRepository userRepository, BorrowService borrowService, BookService bookService) {
@@ -37,7 +38,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long id) throws UserNotFoundException {
+    public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(
             () -> new UserNotFoundException(String.format(USER_NOT_FOUND_MESSAGE_TEMPLATE, id)));
     }
@@ -63,7 +64,7 @@ public class UserService {
     }
 
     @Transactional
-    public User borrowBook(Long userId, Long bookIsbn) throws UserNotFoundException, BookNotFoundException {
+    public User borrowBook(Long userId, Long bookIsbn) {
         User user = getUserById(userId);
         Book book = bookService.getBookByIsbn(bookIsbn);
         Borrow borrow = borrowService.createBorrow(new Borrow());

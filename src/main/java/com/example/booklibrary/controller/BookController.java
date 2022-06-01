@@ -1,6 +1,7 @@
 package com.example.booklibrary.controller;
 
 import com.example.booklibrary.dto.BookDto;
+import com.example.booklibrary.dto.PlainBookDto;
 import com.example.booklibrary.exceptions.BookNotFoundException;
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.service.BookService;
@@ -33,9 +34,9 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public ResponseEntity<List<BookDto>> getAllBooks() {
+    public ResponseEntity<List<PlainBookDto>> getAllBooks() {
         List<Book> books = bookService.getAllBooks();
-        List<BookDto> booksDtoList = books.stream().map(BookDto::from).collect(Collectors.toList());
+        List<PlainBookDto> booksDtoList = books.stream().map(PlainBookDto::from).collect(Collectors.toList());
 
         return new ResponseEntity<>(booksDtoList, HttpStatus.OK);
     }

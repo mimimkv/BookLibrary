@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RequestMapping("library/borrows")
 public class BorrowController {
 
-    private BorrowService borrowService;
+    private final BorrowService borrowService;
 
     @Autowired
     public BorrowController(BorrowService borrowService) {
@@ -39,7 +39,6 @@ public class BorrowController {
     @PostMapping("")
     public ResponseEntity<BorrowDto> createBorrow(@RequestBody BorrowDto borrowDto) {
         Borrow borrow = borrowService.createBorrow(Borrow.from(borrowDto));
-        System.out.println(borrow.getBorrowDate());
         return new ResponseEntity<>(BorrowDto.from(borrow), HttpStatus.OK);
     }
 }

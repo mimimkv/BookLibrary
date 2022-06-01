@@ -31,7 +31,7 @@ public class BookDto {
     public static BookDto from(Book book) {
         BookDto bookDto = new BookDto();
         bookDto.setIsbn(book.getIsbn());
-        bookDto.setTitle(bookDto.getTitle());
+        bookDto.setTitle(book.getTitle());
         bookDto.setAuthor(book.getAuthor());
         bookDto.setCategory(book.getCategory());
         bookDto.setBorrowDtoList(book.getBorrows().stream().map(BorrowDto::from).collect(Collectors.toList()));

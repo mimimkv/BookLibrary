@@ -1,6 +1,7 @@
 package com.example.booklibrary.controller;
 
 import com.example.booklibrary.dto.BookDto;
+import com.example.booklibrary.dto.PlainBookDto;
 import com.example.booklibrary.exceptions.BookNotFoundException;
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.service.BookService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/library") //-> localhost:8080/library
@@ -32,12 +34,15 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+    public ResponseEntity<List<PlainBookDto>> getAllBooks() {
+        List<Book> books = bookService.getAllBooks();
+        List<PlainBookDto> booksDtoList = books.stream().map(PlainBookDto::from).collect(Collectors.toList());
+
+        return new ResponseEntity<>(booksDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/books/{isbn}")
-    public ResponseEntity<Book> getBookByIsbn(@PathVariable Long isbn) {
+    public ResponseEntity<BookDto> getBookByIsbn(@PathVariable Long isbn) {
         Book book;
         try {
             book = bookService.getBookByIsbn(isbn);
@@ -45,7 +50,7 @@ public class BookController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return ResponseEntity.ok(book);
+        return new ResponseEntity<>(BookDto.from(book), HttpStatus.OK);
     }
 
     @PostMapping("/books")
@@ -54,7 +59,7 @@ public class BookController {
     }
 
     @PutMapping("/books/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto) {
+    public ResponseEntity<BookDto> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto) {
         Book book;
         try {
             book = bookService.updateBook(id, bookDto);
@@ -62,7 +67,7 @@ public class BookController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return ResponseEntity.ok(book);
+        return new ResponseEntity<>(BookDto.from(book), HttpStatus.OK);
     }
 
     @DeleteMapping("/books/{isbn}")

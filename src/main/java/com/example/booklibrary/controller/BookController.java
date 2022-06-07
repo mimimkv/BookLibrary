@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,12 +55,12 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public Book addBook(@RequestBody BookDto bookDto) {
+    public Book addBook(@Valid @RequestBody BookDto bookDto) {
         return bookService.createBook(bookDto);
     }
 
     @PutMapping("/books/{id}")
-    public ResponseEntity<BookDto> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto) {
+    public ResponseEntity<BookDto> updateBook(@PathVariable Long id, @Valid @RequestBody BookDto bookDto) {
         Book book;
         try {
             book = bookService.updateBook(id, bookDto);

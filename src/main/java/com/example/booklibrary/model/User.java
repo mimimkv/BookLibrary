@@ -2,18 +2,17 @@ package com.example.booklibrary.model;
 
 import com.example.booklibrary.dto.UserDto;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,11 +33,12 @@ public class User implements Serializable {
     @Column
     private String lastName;
 
+    @Email
     @Column
     private String email;
 
     @Column
-    @CreatedDate
+    @CreationTimestamp
     private LocalDate joinedDate;
 
     //@OneToMany(cascade = CascadeType.ALL)

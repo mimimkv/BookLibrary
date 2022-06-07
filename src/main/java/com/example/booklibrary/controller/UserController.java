@@ -92,7 +92,7 @@ public class UserController {
     public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @Valid @RequestBody UserDto userDto) {
         User user;
         try {
-            user = userService.updateUser(id, User.from(userDto));
+            user = userService.updateUser(id, userDto);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

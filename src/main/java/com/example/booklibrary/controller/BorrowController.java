@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class BorrowController {
     }
 
     @PostMapping("")
-    public ResponseEntity<BorrowDto> createBorrow(@RequestBody BorrowDto borrowDto) {
+    public ResponseEntity<BorrowDto> createBorrow(@Valid @RequestBody BorrowDto borrowDto) {
         Borrow borrow = borrowService.createBorrow(Borrow.from(borrowDto));
         return new ResponseEntity<>(BorrowDto.from(borrow), HttpStatus.OK);
     }

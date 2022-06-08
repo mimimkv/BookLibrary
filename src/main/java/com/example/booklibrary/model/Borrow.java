@@ -2,6 +2,7 @@ package com.example.booklibrary.model;
 
 import com.example.booklibrary.dto.BorrowDto;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "borrows")
@@ -20,8 +22,11 @@ public class Borrow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //    @Column
+//    private String borrowDate;
     @Column
-    private String borrowDate;
+    @CreationTimestamp
+    private LocalDate borrowDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -34,6 +39,7 @@ public class Borrow {
     public static Borrow from(BorrowDto borrowDto) {
         Borrow borrow = new Borrow();
         borrow.setBorrowDate(borrowDto.getBorrowDate());
+        // todo set book and user
         return borrow;
     }
 }

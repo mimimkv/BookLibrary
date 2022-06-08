@@ -3,10 +3,11 @@ package com.example.booklibrary.dto;
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.model.Author;
 import com.example.booklibrary.model.enums.Category;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,8 +15,11 @@ import java.util.stream.Collectors;
 @Data
 public class BookDto {
     private Long isbn;
+    @NotBlank
     private String title;
+    @Valid
     private Author author;
+    @NotNull
     private Category category;
     private List<BorrowDto> borrowDtoList = new ArrayList<>();
 

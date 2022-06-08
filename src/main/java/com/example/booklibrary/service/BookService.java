@@ -38,7 +38,10 @@ public class BookService {
             throw new BookNotFoundException(String.format(BOOK_NOT_FOUND_MESSAGE_TEMPLATE, id));
         }
 
-        return bookRepository.save(BookDto.mapToBook(bookDto));
+        Book book = BookDto.mapToBook(bookDto);
+        book.setIsbn(id);
+
+        return bookRepository.save(book);
     }
 
     public void deleteBook(Long id) {

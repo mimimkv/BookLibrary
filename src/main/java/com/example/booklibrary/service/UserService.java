@@ -47,10 +47,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User updateUser(Long id, User user) throws UserNotFoundException {
+    public User updateUser(Long id, UserDto userDto) throws UserNotFoundException {
         if (!userExists(id)) {
             throw new UserNotFoundException(String.format(USER_NOT_FOUND_MESSAGE_TEMPLATE, id));
         }
+
+        User user = User.from(userDto);
+        user.setId(id);
 
         return userRepository.save(user);
     }
@@ -71,7 +74,7 @@ public class UserService {
         user.borrow(borrow);
         borrow.setUser(user);
         borrow.setBook(book);
-        borrow.setBorrowDate("now");
+        //borrow.setBorrowDate("now");
         return user;
     }
 

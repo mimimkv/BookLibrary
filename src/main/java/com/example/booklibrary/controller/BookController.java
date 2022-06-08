@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,19 +49,13 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public Book addBook(@RequestBody BookDto bookDto) {
+    public Book addBook(@Valid @RequestBody BookDto bookDto) {
         return bookService.createBook(bookDto);
     }
 
     @PutMapping("/books/{id}")
-    public ResponseEntity<BookDto> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto) {
-        Book book = bookService.updateBook(id, bookDto);
-        /*try {
-            book = bookService.updateBook(id, bookDto);
-        } catch (BookNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }*/
-
+    public ResponseEntity<BookDto> updateBook(@PathVariable Long id, @Valid @RequestBody BookDto bookDto) {
+        Book  book = bookService.updateBook(id, bookDto);
         return new ResponseEntity<>(BookDto.from(book), HttpStatus.OK);
     }
 

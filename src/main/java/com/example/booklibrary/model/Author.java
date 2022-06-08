@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -26,9 +27,11 @@ public class Author implements Serializable {
     @Id
     private Long id;
 
+    @NotBlank
     @Column(name = "first_name")
     private String firstName;
 
+    @NotBlank
     @Column(name = "last_name")
     private String lastName;
 

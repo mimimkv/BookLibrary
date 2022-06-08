@@ -1,0 +1,21 @@
+nav {
+    margin-bottom: 15px;
+}
+
+.nav-bar-nav {
+    padding: 10px;
+}
+
+.nav-item {
+    font-size: 20px;
+    margin: 5px;
+}
+
+li .nav-link {
+    color: white;
+    font-weight: 600;
+}
+
+.btn-danger {
+    margin-left: 10px;
+}

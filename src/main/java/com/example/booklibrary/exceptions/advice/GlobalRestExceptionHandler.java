@@ -1,7 +1,8 @@
-package com.example.booklibrary.controller;
+package com.example.booklibrary.exceptions.advice;
 
 import com.example.booklibrary.exceptions.BookNotFoundException;
-import org.apache.coyote.Response;
+import com.example.booklibrary.exceptions.ObjectNotFoundException;
+import com.example.booklibrary.exceptions.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,22 +10,24 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.validation.ConstraintViolationException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
+public class GlobalRestExceptionHandler extends  ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {BookNotFoundException.class})
-    protected ResponseEntity<Object> handleConflict(BookNotFoundException ex, WebRequest request) {
-        String bodyOfResponse = "{ \"error\": \"" + ex.getMessage() + "\" }";
-        return handleExceptionInternal(ex, bodyOfResponse,
-                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+    private static final String ERROR_MESSAGE_TEMPLATE = "{ \"error\": \"%s\" }";
+
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity<Object> handleNotFound(ObjectNotFoundException e) {
+        String bodyOfResponse = String.format(ERROR_MESSAGE_TEMPLATE, e.getMessage());
+        return new ResponseEntity<>(bodyOfResponse, HttpStatus.NOT_FOUND);
     }
 
     @Override

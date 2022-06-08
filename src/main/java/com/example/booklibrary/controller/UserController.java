@@ -47,24 +47,18 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
-        User user;
-        try {
-            user = userService.getUserById(id);
-        } catch (UserNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+        User user = userService.getUserById(id);
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
 
     @GetMapping("/users/email")
     public ResponseEntity<UserDto> getUserByEmail(@RequestParam String email) {
-        User user;
-        try {
+        User user = userService.getUserByEmail(email);
+        /*try {
             user = userService.getUserByEmail(email);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        }*/
 
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
@@ -78,36 +72,31 @@ public class UserController {
 
     @PostMapping("/users/{userId}/borrow/{bookIsbn}")
     public ResponseEntity<UserDto> borrowBook(@PathVariable Long userId, @PathVariable Long bookIsbn) {
-        User user;
-        try {
+        User user = userService.borrowBook(userId, bookIsbn);
+        /*try {
             user = userService.borrowBook(userId, bookIsbn);
         } catch (UserNotFoundException | BookNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        }*/
 
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
 
     @PutMapping("/users/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @Valid @RequestBody UserDto userDto) {
-        User user;
-        try {
-            user = userService.updateUser(id, userDto);
-        } catch (UserNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+        User user = userService.updateUser(id, userDto);
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
 
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id) {
-        try {
+        userService.deleteUser(id);
+        /*try {
             userService.deleteUser(id);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        }*/
 
         Map<String, Boolean> response = new HashMap<>();
         response.put(DELETED_LABEL, Boolean.TRUE);

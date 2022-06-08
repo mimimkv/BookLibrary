@@ -44,13 +44,7 @@ public class BookController {
 
     @GetMapping("/books/{isbn}")
     public ResponseEntity<BookDto> getBookByIsbn(@PathVariable Long isbn) {
-        Book book;
-        try {
-            book = bookService.getBookByIsbn(isbn);
-        } catch (BookNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+        Book book = bookService.getBookByIsbn(isbn);
         return new ResponseEntity<>(BookDto.from(book), HttpStatus.OK);
     }
 
@@ -61,23 +55,19 @@ public class BookController {
 
     @PutMapping("/books/{id}")
     public ResponseEntity<BookDto> updateBook(@PathVariable Long id, @Valid @RequestBody BookDto bookDto) {
-        Book book;
-        try {
-            book = bookService.updateBook(id, bookDto);
-        } catch (BookNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+        Book  book = bookService.updateBook(id, bookDto);
         return new ResponseEntity<>(BookDto.from(book), HttpStatus.OK);
     }
 
     @DeleteMapping("/books/{isbn}")
     public ResponseEntity<Map<String, Boolean>> deleteBook(@PathVariable Long isbn) {
-        try {
+        /*try {
             bookService.deleteBook(isbn);
         } catch (BookNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        }*/
+
+        bookService.deleteBook(isbn);
 
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);

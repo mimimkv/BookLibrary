@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Author } from 'src/app/model/Author';
 import { Book } from 'src/app/model/Book';
 
 @Component({
@@ -13,6 +14,7 @@ export class AddBookComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.book.author = new Author();
   }
 
   onSubmit() {

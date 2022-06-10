@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-success">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/books-list" routerLinkActive="active" class="nav-link">Books List</a>
+      </li>
+    </ul>
+  </nav>
+
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <h3>Add New Book</h3>
+        <form class="create-book-form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title"
+                    [(ngModel)]="book.title" name="title">
+            </div>
+        
+            <div class="form-group">
+                <label for="authorFirstName">Author First Name</label>
+                <input type="text" class="form-control" id="authorFirstName"
+                    [(ngModel)]="book.author.firstName" name="author.firstName">
+            </div>
+        
+            <div class="form-group">
+                <label>Author Last Name</label>
+                <input type="text" class="form-control" id="authorLastName"
+                    [(ngModel)]="book.author.lastName" name="author.lastName">
+            </div>
+    
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" class="form-control" id="category"
+                    [(ngModel)]="book.category" name="category">
+            </div>
+        
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { BorrowsListComponent } from './components/borrows-list/borrows-list.component';
+import { UpdateBookComponent } from './components/update-book/update-book.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BorrowsListComponent } from './components/borrows-list/borrows-list.com
     AddBookComponent,
     UsersListComponent,
     AddUserComponent,
-    BorrowsListComponent
+    BorrowsListComponent,
+    UpdateBookComponent
   ],
   imports: [
     BrowserModule,

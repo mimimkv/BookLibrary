@@ -28,8 +28,18 @@
                 <td>{{ book.author.firstName }} {{ book.author.lastName }}</td>
                 <td>{{book.category}}</td>
                 <td>
-                    <button  class="btn btn-info">Update</button>
-                    <button  class="btn btn-danger">Borrow</button>
+                    <button (click)="updateBook(book.isbn)" class="btn btn-info">Update</button>
+                    <button (click)="borrow(book.isbn)" class="btn btn-danger">Borrow</button>
+                    <form *ngIf="isBookSelected && book.isbn === selectedBookId" class="user-email-form"
+                        (ngSubmit)="submitEmail()">
+                        <div class="form-group">
+                            <label for="userEmail">User Email</label>
+                            <input type="text" id="userEmail"
+                            [(ngModel)]="userEmail" name="userEmail">
+                        </div>
+                        <button class="btn btn-success" type="submit">Submit</button>
+                        <button type="button" class="btn btn-danger" (click)="closeEmailForm()">Close</button>
+                    </form>
                 </td>
             </tr>
         </tbody>

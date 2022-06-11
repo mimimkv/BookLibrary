@@ -19,3 +19,17 @@ li .nav-link {
 .btn-danger {
     margin-left: 10px;
 }
+
+.user-email-form {
+    display: flex;
+    margin: 15px;
+    padding: 10px;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.user-email-form label{
+    margin-right: 5px;
+}
+
+

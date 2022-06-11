@@ -5,6 +5,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { BorrowsListComponent } from './components/borrows-list/borrows-list.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: "add-book", component: AddBookComponent},
   {path: "users-list", component: UsersListComponent},
   {path: "add-user", component: AddUserComponent},
-  {path: "borrows-list", component: BorrowsListComponent}
+  {path: "borrows-list", component: BorrowsListComponent},
+  {path: "update-book/:isbn", component: UpdateBookComponent}
 ];
 
 @NgModule({

@@ -15,4 +15,15 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.apiUrl);
   }
+
+  getUserByEmail(userEmail: string): Observable<User> {
+    const url = this.apiUrl + "/email?email=" + userEmail;
+    return this.httpClient.get<User>(url);
+  }
+
+  borrowBook(bookIsbn: number, userId: number): Observable<User> {
+    const url = this.apiUrl + "/" + userId + "/borrow/" + bookIsbn;
+    console.log(url);
+    return this.httpClient.post<User>(url, null);
+  }
 }

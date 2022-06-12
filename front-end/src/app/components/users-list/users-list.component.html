@@ -30,7 +30,7 @@
                 <td>{{user.email}}</td>
                 <td>{{user.joinedDate}}</td>
                 <td>
-                    <button class="btn btn-info">Update</button>
+                    <button (click)="updateUser(user.id)" class="btn btn-info">Update</button>
                     <button class="btn btn-danger">Return Borrow</button>
                 </td>
             </tr>

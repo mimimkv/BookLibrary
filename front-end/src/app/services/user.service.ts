@@ -21,9 +21,24 @@ export class UserService {
     return this.httpClient.get<User>(url);
   }
 
+  getUserById(id: number): Observable<User> {
+    const url = this.apiUrl + "/" + id;
+    return this.httpClient.get<User>(url);
+  }
+
   borrowBook(bookIsbn: number, userId: number): Observable<User> {
     const url = this.apiUrl + "/" + userId + "/borrow/" + bookIsbn;
     console.log(url);
     return this.httpClient.post<User>(url, null);
   }
+
+  updateUser(id: number, user: User): Observable<User> {
+    const url = this.apiUrl + "/" + id;
+    return this.httpClient.put<User>(url, user);
+  }
+
+  addUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.apiUrl, user);
+  }
+
 }

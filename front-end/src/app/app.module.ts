@@ -12,6 +12,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { BorrowsListComponent } from './components/borrows-list/borrows-list.component';
 import { UpdateBookComponent } from './components/update-book/update-book.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UpdateBookComponent } from './components/update-book/update-book.compon
     UsersListComponent,
     AddUserComponent,
     BorrowsListComponent,
-    UpdateBookComponent
+    UpdateBookComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

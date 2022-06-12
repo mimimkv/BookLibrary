@@ -2,6 +2,7 @@ package com.example.booklibrary.service;
 
 import com.example.booklibrary.dto.BookDto;
 import com.example.booklibrary.exceptions.BookNotFoundException;
+import com.example.booklibrary.model.Author;
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,12 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
+    private final AuthorService authorService;
+
     @Autowired
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, AuthorService authorService) {
         this.bookRepository = bookRepository;
+        this.authorService = authorService;
     }
 
     public List<Book> getAllBooks() {
@@ -26,11 +30,15 @@ public class BookService {
 
     public Book getBookByIsbn(Long isbn) {
         return bookRepository.findById(isbn).orElseThrow(
-                () -> new BookNotFoundException(String.format(BOOK_NOT_FOUND_MESSAGE_TEMPLATE, isbn)));
+            () -> new BookNotFoundException(String.format(BOOK_NOT_FOUND_MESSAGE_TEMPLATE, isbn)));
     }
 
     public Book createBook(BookDto bookDto) {
-        return bookRepository.save(BookDto.mapToBook(bookDto));
+        Author author =
+            authorService.findByName(bookDto.getAuthor().getFirstName(), bookDto.getAuthor().getLastName());
+        Book book = BookDto.mapToBook(bookDto);
+        book.setAuthor(author);
+        return bookRepository.save(book);
     }
 
     public Book updateBook(Long id, BookDto bookDto) {

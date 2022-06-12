@@ -25,4 +25,8 @@ export class BookService {
     const url = this.apiUrl + "/" + booksIsbn;
     return this.httpClient.put<Book>(url, book);
   }
+
+  addBook(book: Book): Observable<Book> {
+    return this.httpClient.post<Book>(this.apiUrl, book);
+  }
 }

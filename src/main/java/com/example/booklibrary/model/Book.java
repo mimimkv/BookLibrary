@@ -35,7 +35,7 @@ public class Book implements Serializable {
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "author", nullable = true)
+    @JoinColumn(name = "author")
     //@JsonManagedReference
     private Author author;
 

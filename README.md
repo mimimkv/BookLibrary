@@ -7,7 +7,7 @@
   - [🏤 Architecture](#-architecture)
   - [📄 Database Model](#-database-model)
   - [🔨 Software Technologies](#-software-technologies)
-  - [⚙️ Setup](#-setup)
+  - [⚙️ Setup](#️-setup)
   - [📸 Screenshots](#-screenshots)
   - [🎉 Acknowledgements](#-acknowledgements)
   - [💬 Contact](#-contact)

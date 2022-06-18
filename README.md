@@ -2,16 +2,16 @@
 
 ## Table of Contents
   - [Table of Contents](#table-of-contents)
-  - [General Information](#general-information)
-  - [Business Requirements](#business-requirements)
-  - [Git flow](#git-flow)
-  - [Architecture](#architecture)
-  - [Database Model](#database-model)
-  - [Software Technologies](#software-technologies)
-  - [Setup](#setup)
-  - [Screenshots](#screenshots)
-  - [Acknowledgements](#acknowledgements)
-  - [Contact](#contact)
+  - [🎇 General Information](#🎇-general-information)
+  - [📝 Business Requirements](#📝-business-requirements)
+  - [🌊 Git flow](#🌊-git-flow)
+  - [🏤 Architecture](#🏤-architecture)
+  - [📄 Database Model](#📄-database-model)
+  - [🔨 Software Technologies](#🔨-software-technologies)
+  - [⚙️ Setup](#⚙️-setup)
+  - [📸 Screenshots](#📸-screenshots)
+  - [🎉 Acknowledgements](#🎉-acknowledgements)
+  - [💬 Contact](#💬-contact)
   
 
 ---

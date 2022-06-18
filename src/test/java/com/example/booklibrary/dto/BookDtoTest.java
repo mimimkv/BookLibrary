@@ -12,7 +12,9 @@ class BookDtoTest {
     @Test
     public void testMapToBook() {
         String title = "book1";
-        Author author = new Author("name1", "name2");
+        Author author = new Author();
+        author.setFirstName("John");
+        author.setLastName("Smith");
 
         Book expected = new Book(title, author, Category.FANTASY);
         BookDto bookDto = new BookDto();

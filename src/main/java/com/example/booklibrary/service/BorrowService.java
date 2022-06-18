@@ -27,7 +27,7 @@ public class BorrowService {
 
     public Borrow getBorrowById(Long id) throws BorrowNotFoundException {
         return borrowRepository.findById(id)
-            .orElseThrow(() -> new BorrowNotFoundException("This borrow cannot be found."));
+                .orElseThrow(() -> new BorrowNotFoundException("This borrow cannot be found."));
     }
 
     public Borrow deleteBorrow(Long id) throws BorrowNotFoundException {

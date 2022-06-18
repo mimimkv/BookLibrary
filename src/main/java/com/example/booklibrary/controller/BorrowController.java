@@ -31,8 +31,8 @@ public class BorrowController {
     public ResponseEntity<List<BorrowDto>> getAllBorrows() {
         List<Borrow> borrows = borrowService.getAllBorrows();
         List<BorrowDto> borrowsDtoList = borrows.stream()
-            .map(BorrowDto::from)
-            .collect(Collectors.toList());
+                .map(BorrowDto::from)
+                .collect(Collectors.toList());
 
         return new ResponseEntity<>(borrowsDtoList, HttpStatus.OK);
     }

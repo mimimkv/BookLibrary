@@ -23,6 +23,6 @@ public class PlainUserDto {
         plainUserDto.setLastName(user.getLastName());
         plainUserDto.setEmail(user.getEmail());
 
-        return  plainUserDto;
+        return plainUserDto;
     }
 }

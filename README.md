@@ -107,7 +107,7 @@ The next table is the <ins>`borrows`</ins> table. It stores information about al
 
 The database schema:
 
-
+![alt text](./images/schemaDB.png)
 
 ---
 ## 🔨 Software Technologies
@@ -136,6 +136,12 @@ List of all software technologies used during the development process:
 
 ---
 ## 📸 Screenshots
+![alt text](./images/img1.png)
+![alt text](./images/img2.png)
+![alt text](./images/img3.png)
+![alt text](./images/img4.png)
+![alt text](./images/img5.png)
+![alt text](./images/img6.png)
 
 ---
 ## 🎉 Acknowledgements

@@ -10,12 +10,32 @@ import { BorrowService } from 'src/app/services/borrow.service';
 export class BorrowsListComponent implements OnInit {
 
   borrows: Borrow[] = [];
+  totalElements: number;
+  size: number;
+  page: number = 0;
+  filterString: any;
+
 
   constructor(private borrowService: BorrowService) { }
 
   ngOnInit(): void {
-    this.borrowService.getAllBorrows()
-      .subscribe((borrows) => this.borrows = borrows);
+    this.getAllBorrows();
   }
+
+
+  getAllBorrows() {
+    this.borrowService.getAllBorrows(this.page)
+      .subscribe((response: any) => {
+        this.borrows = response.content;
+        this.size = response.size;
+        this.totalElements = response.totalElements;
+      });
+  }
+
+  pageChangeEvent(event: number) {
+    this.page = event;
+    this.getAllBorrows();
+  }
+
 
 }

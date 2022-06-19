@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 @Data
 public class PlainUserDto {
@@ -16,12 +17,15 @@ public class PlainUserDto {
     @Email
     private String email;
 
+    private LocalDate joinedDate;
+
     public static PlainUserDto from(User user) {
         PlainUserDto plainUserDto = new PlainUserDto();
         plainUserDto.setId(user.getId());
         plainUserDto.setFirstName(user.getFirstName());
         plainUserDto.setLastName(user.getLastName());
         plainUserDto.setEmail(user.getEmail());
+        plainUserDto.setJoinedDate(user.getJoinedDate());
 
         return  plainUserDto;
     }

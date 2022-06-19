@@ -19,3 +19,8 @@ li .nav-link {
 .btn-danger {
     margin-left: 10px;
 }
+
+.filter {
+    width: 40%;
+    margin: 20px 0 30px 50px;
+}

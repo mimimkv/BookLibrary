@@ -6,6 +6,15 @@
     </ul>
   </nav>
 
+<div class="filter">
+    <label for="filter">Search borrows by keywords</label>
+    <form class="form-inline waves-light" mdbWavesEffect>
+        <div class="md-form mt-0">
+            <input class="form-control mr-sm-2" type="text"  name="filterString" [(ngModel)]="filterString" placeholder="Search">
+        </div>
+        </form>
+</div>
+
   <div class="container">
     <h2>Borrows List</h2>
     <table class="table table-striped">
@@ -19,7 +28,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let borrow of borrows">
+            <tr *ngFor="let borrow of borrows | filter: filterString | paginate: {
+                                                                     itemsPerPage: size,
+                                                                     currentPage: page, 
+                                                                     totalItems: totalElements}">
                 <td>{{borrow.plainUserDto.email}}</td>
                 <td>{{borrow.plainBookDto.title}}</td>
                 <td>{{borrow.plainBookDto.author.firstName}} {{borrow.plainBookDto.author.lastName}}</td>
@@ -28,5 +40,6 @@
             </tr>
         </tbody>
     </table>
+    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
 </div>
 

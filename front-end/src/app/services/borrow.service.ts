@@ -12,8 +12,13 @@ export class BorrowService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllBorrows(): Observable<Borrow[]> {
-    return this.httpClient.get<Borrow[]>(this.apiUrl);
+  /*getEmployees(page: number): Observable<any> {
+    return this.httpClient.get<any>(this.apiUrl + "?page=" + page);
+  }*/
+
+  getAllBorrows(page: number): Observable<any> {
+    const url = this.apiUrl + "?page=" + page;
+    return this.httpClient.get<any>(url);
   }
 
   async getBorrow(userId: number, bookIsbn: number): Promise<number> {

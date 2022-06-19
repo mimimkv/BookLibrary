@@ -4,6 +4,8 @@ import com.example.booklibrary.dto.BorrowDto;
 import com.example.booklibrary.model.Borrow;
 import com.example.booklibrary.service.BorrowService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,11 +36,9 @@ public class BorrowController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<BorrowDto>> getAllBorrows() {
-        List<Borrow> borrows = borrowService.getAllBorrows();
-        List<BorrowDto> borrowsDtoList = borrows.stream()
-            .map(BorrowDto::from)
-            .collect(Collectors.toList());
+    public ResponseEntity<Page<BorrowDto>> getAllBorrows(Pageable page) {
+        Page<Borrow> borrows = borrowService.getAllBorrows(page);
+        Page<BorrowDto> borrowsDtoList =borrows.map(BorrowDto::from);
 
         return new ResponseEntity<>(borrowsDtoList, HttpStatus.OK);
     }

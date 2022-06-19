@@ -13,6 +13,8 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { BorrowsListComponent } from './components/borrows-list/borrows-list.component';
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

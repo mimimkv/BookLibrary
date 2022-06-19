@@ -19,3 +19,16 @@ li .nav-link {
 .btn-danger {
     margin-left: 10px;
 }
+
+.book-isbn-form {
+    display: flex;
+    margin: 15px;
+    padding: 10px;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.book-isbn-form label{
+    margin-right: 5px;
+}
+

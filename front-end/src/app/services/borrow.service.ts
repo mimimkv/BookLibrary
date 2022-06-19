@@ -15,4 +15,20 @@ export class BorrowService {
   getAllBorrows(): Observable<Borrow[]> {
     return this.httpClient.get<Borrow[]>(this.apiUrl);
   }
+
+  async getBorrow(userId: number, bookIsbn: number): Promise<number> {
+    const url = this.apiUrl + "/userId/" + userId +  "/bookIsbn/" + bookIsbn;
+    console.log(url);
+    return this.httpClient.get<Borrow>(url).toPromise()
+      .then((borrow: Borrow) => {return borrow.id;})
+      .catch((error) => {
+        console.log(error);
+        return -1;
+      });
+  }
+
+  deleteBorrow(borrowId: number): Observable<any> {
+    const url = this.apiUrl + "/" + borrowId;
+    return this.httpClient.delete<Borrow>(this.apiUrl + "/" + borrowId);
+  }
 }

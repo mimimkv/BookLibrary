@@ -36,11 +36,19 @@ export class BooksListComponent implements OnInit {
       this.selectedBookId = bookIsbn;
   }
 
-  borrowBook(bookIsbn: number, userEmail: string) {
-      this.userService.getUserByEmail(userEmail)
+  async borrowBook(bookIsbn: number, userEmail: string) {
+     /* this.userService.getUserByEmail(userEmail)
       .subscribe((user: User) => {
         this.selectedUserId = user.id;
-      });
+      });*/
+      console.log('>>>>>>>>>>>>>>>>>>> ');
+      this.selectedUserId = await this.userService.getUserByEmail(userEmail);
+      // .then((id) => {
+      //   this.selectedUserId = id;
+      //   console.log(this.selectedUserId)
+      // });
+
+      console.log('>>>>>>>>>>>>>>>>>>> ');
 
       //fix: We have to wait for the upper operation to use the value of 
       //selectedUserId below()

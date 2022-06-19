@@ -16,9 +16,30 @@ export class UserService {
     return this.httpClient.get<User[]>(this.apiUrl);
   }
 
-  getUserByEmail(userEmail: string): Observable<User> {
+  async getUserByEmail(userEmail: string): Promise<number> {
+    let id = null;
+    console.log('>>>>>>>>>>>>>>>>>>> g');
     const url = this.apiUrl + "/email?email=" + userEmail;
-    return this.httpClient.get<User>(url);
+    return this.httpClient.get<User>(url).toPromise()
+      .then((user: User) => {
+        console.log(user);
+        id = user.id;
+        return id;
+      })
+      .catch((error) => {
+        console.log(error)
+        return 0;
+      });
+    // let promise = new Promise<User>((resolve, reject) => {
+    //   this.httpClient.get<User>(url).toPromise()
+    //   .then((user: User) => {
+        
+    //   console.log('>>>>>>>>>>>>>>>>>>> ', user.id);
+    //     selectedUserId = user.id});
+    // })
+
+    // console.log('>>>>>>>>>>>>>>>>>>> g', id);
+    //return id;    
   }
 
   getUserById(id: number): Observable<User> {

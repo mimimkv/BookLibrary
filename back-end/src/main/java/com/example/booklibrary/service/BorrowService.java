@@ -1,5 +1,6 @@
 package com.example.booklibrary.service;
 
+import com.example.booklibrary.exceptions.BookNotFoundException;
 import com.example.booklibrary.exceptions.BorrowNotFoundException;
 import com.example.booklibrary.model.Borrow;
 import com.example.booklibrary.repository.BorrowRepository;
@@ -30,10 +31,17 @@ public class BorrowService {
             .orElseThrow(() -> new BorrowNotFoundException("This borrow cannot be found."));
     }
 
-    public Borrow deleteBorrow(Long id) throws BorrowNotFoundException {
-        Borrow borrow = getBorrowById(id);
-        borrowRepository.delete(borrow);
-        return borrow;
+    public Borrow getBorrow(Long userId, Long bookIsbn) {
+        return borrowRepository.findByUserIdAndBookIsbn(userId, bookIsbn)
+            .orElseThrow(() -> new BorrowNotFoundException("This borrow cannot be found."));
+    }
+
+    public void deleteBorrow(Long id) throws BorrowNotFoundException {
+        if (!borrowExists(id)) {
+            throw new BookNotFoundException("This borrow cannot be found.");
+        }
+
+        borrowRepository.deleteById(id);
     }
 
     public Borrow updateBorrow(Long id, Borrow borrow) throws BorrowNotFoundException {
@@ -41,5 +49,9 @@ public class BorrowService {
         borrowToUpdate.setUser(borrow.getUser());
 
         return borrowRepository.save(borrow);
+    }
+
+    private boolean borrowExists(Long id) {
+        return borrowRepository.findById(id).isPresent();
     }
 }

@@ -5,6 +5,7 @@
   - [📝 Business Requirements](#-business-requirements)
   - [🌊 Git flow](#-git-flow)
   - [🏤 Architecture](#-architecture)
+  - [📍 Endpoints](#-endpoints)
   - [📄 Database Model](#-database-model)
   - [🔨 Software Technologies](#-software-technologies)
   - [⚙️ Setup](#️-setup)
@@ -57,6 +58,11 @@ Packages:
 - `component`
 - `model`
 - `services` 
+
+---
+## 📍 Endpoints
+![alt text](./images/swagger1.png)
+![alt text](./images/swagger2.png)
 
 ---
 ## 📄 Database Model

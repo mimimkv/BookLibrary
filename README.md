@@ -142,6 +142,8 @@ List of all software technologies used during the development process:
 ![alt text](./images/img4.png)
 ![alt text](./images/img5.png)
 ![alt text](./images/img6.png)
+![alt text](./images/img7.png)
+
 
 ---
 ## 🎉 Acknowledgements

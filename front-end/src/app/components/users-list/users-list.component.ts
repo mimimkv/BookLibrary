@@ -22,6 +22,10 @@ export class UsersListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
     this.userService.getAllUsers()
       .subscribe((users) => this.users = users);
   }
@@ -30,17 +34,21 @@ export class UsersListComponent implements OnInit {
     this.router.navigate(["/update-user", id]);
   }
 
+  deleteUser(id: number) {
+    this.userService.deleteUser(id)
+      .subscribe(() => {
+        console.log("User " + id + " was deleted")
+        this.getAllUsers();
+      });
+  }
+
   returnBorrow(userId: number) {
     this.isUserSelected = true;
     this.selectedUserId = userId;
   }
 
   async removeBorrow(userId: number, bookIsbn: number) {
-    //let user = this.userService.getUserById(userId);
     this.selectedBorrowId = await this.borrowService.getBorrow(userId, bookIsbn);
-
-    console.log("here");
-    console.log(this.selectedBorrowId);
 
     this.borrowService.deleteBorrow(this.selectedBorrowId)
       .subscribe(() => console.log(this.selectedBorrowId))

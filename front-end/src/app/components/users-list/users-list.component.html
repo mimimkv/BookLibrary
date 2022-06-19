@@ -31,6 +31,7 @@
                 <td>{{user.joinedDate}}</td>
                 <td>
                     <button (click)="updateUser(user.id)" class="btn btn-info">Update</button>
+                    <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
                     <button (click)="returnBorrow(user.id)" class="btn btn-danger">Return Borrow</button>
                     <form *ngIf="isUserSelected && user.id === selectedUserId" class="book-isbn-form"
                         (ngSubmit)="submitBookIsbn()">

@@ -62,4 +62,9 @@ export class UserService {
     return this.httpClient.post<User>(this.apiUrl, user);
   }
 
+  deleteUser(id: number) {
+    const url = this.apiUrl + "/" + id;
+    return this.httpClient.delete<User>(url);
+  }
+
 }

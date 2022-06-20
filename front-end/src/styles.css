@@ -91,6 +91,11 @@ body {
     }
   }
 
-  .error-list {
+.error-list {
     color: red;
+}
+
+.select-category {
+  margin: 10px 0 10px 0;
+  display: block;
 }

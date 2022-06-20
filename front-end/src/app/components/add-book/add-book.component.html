@@ -31,10 +31,23 @@
                     [(ngModel)]="book.author.lastName" name="authorlastName">
             </div>
     
+            <!--
             <div class="form-group">
                 <label>Category</label>
                 <input type="text" class="form-control" id="category"
                     [(ngModel)]="book.category" name="category">
+            </div>
+
+            -->
+
+            <div class="form-group">
+                <label>Category</label>
+                <select class="select-category" [(ngModel)]="book.category" [ngModelOptions]="{standalone: true}">
+                    <option default>HISTORICAL_FICTION</option>
+                    <option>HORROR</option>
+                    <option>ADVENTURE</option>
+                    <option>FANTASY</option>
+                </select>
             </div>
 
             <div *ngIf="errorObj !== null">

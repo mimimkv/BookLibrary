@@ -14,6 +14,7 @@ export class AddBookComponent implements OnInit {
   book: Book = new Book();
   //error: boolean = false;
   errorObj: Object = null;
+  selectedTeam: string = "";
 
   constructor(private bookService: BookService, private router: Router) { }
 

@@ -12,6 +12,7 @@ export class UpdateUserComponent implements OnInit {
 
   id: number;
   user: User = new User();
+  errorObj: Object = null;
 
   constructor(private userService: UserService,
     private route: ActivatedRoute, private router: Router) { }
@@ -28,7 +29,12 @@ export class UpdateUserComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         this.goToUsersList();
-      }, error => console.log(error));
+      }, (error: any) => {
+        console.log(error)
+        if (error.status == 400) {
+          this.errorObj = error.error;
+        }
+      });
   }
 
   goToUsersList() {

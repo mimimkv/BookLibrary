@@ -36,6 +36,10 @@
                 <input type="text" class="form-control" id="category"
                     [(ngModel)]="book.category" name="category">
             </div>
+
+            <div *ngIf="errorObj !== null">
+                <p class="error-list" *ngFor="let item of errorObj|keyvalue">{{item.key}} : {{item.value}}</p>
+            </div>
         
             <button class="btn btn-success" type="submit">Submit</button>
         </form>

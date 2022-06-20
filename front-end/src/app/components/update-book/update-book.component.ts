@@ -13,6 +13,7 @@ export class UpdateBookComponent implements OnInit {
 
   isbn: number;
   book: Book = new Book();
+  errorObj: Object = null;
 
   constructor(private bookService: BookService, 
     private route: ActivatedRoute, private router: Router) { }
@@ -30,7 +31,12 @@ export class UpdateBookComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         this.goToBooksList();
-      }, error => console.log(error));
+      }, (error: any) => {
+        console.log(error)
+        if (error.status == 400) {
+          this.errorObj = error.error;
+        }
+      });
   }
 
   goToBooksList() {

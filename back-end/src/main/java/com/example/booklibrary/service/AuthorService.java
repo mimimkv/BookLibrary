@@ -1,5 +1,6 @@
 package com.example.booklibrary.service;
 
+import com.example.booklibrary.exceptions.AuthorNotFoundException;
 import com.example.booklibrary.model.Author;
 import com.example.booklibrary.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,6 @@ public class AuthorService {
             }
         }
 
-        throw new IllegalArgumentException();
+        throw new AuthorNotFoundException("This author is not present in the database");
     }
 }

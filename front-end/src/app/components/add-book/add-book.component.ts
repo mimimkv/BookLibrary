@@ -12,6 +12,8 @@ import { BookService } from 'src/app/services/book.service';
 export class AddBookComponent implements OnInit {
 
   book: Book = new Book();
+  //error: boolean = false;
+  errorObj: Object = null;
 
   constructor(private bookService: BookService, private router: Router) { }
 
@@ -25,7 +27,15 @@ export class AddBookComponent implements OnInit {
 
   addBook() {
     this.bookService.addBook(this.book)
-      .subscribe(() => this.goToBooksList());
+      .subscribe(() => {
+        this.goToBooksList()
+      }, (error: any) => {
+        console.log(error)
+        //this.error = true;
+        if (error.status == 400) {
+          this.errorObj = error.error;
+        }
+      });
   }
 
   onSubmit() {

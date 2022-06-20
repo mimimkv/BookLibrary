@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class AddUserComponent implements OnInit {
 
   user: User = new User();
+  errorObj: Object = null;
 
   constructor(private userSerice: UserService, private router: Router) { }
 
@@ -23,7 +24,14 @@ export class AddUserComponent implements OnInit {
 
   addUser() {
     this.userSerice.addUser(this.user)
-      .subscribe(() => this.goToUsersList());
+      .subscribe(() => {
+        this.goToUsersList()
+      }, (error: any) => {
+        console.log(error)
+        if (error.status == 400) {
+          this.errorObj = error.error;
+        }
+      });
   }
 
   onSubmit() {

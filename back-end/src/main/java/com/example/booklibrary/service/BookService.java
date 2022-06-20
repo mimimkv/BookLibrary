@@ -46,8 +46,10 @@ public class BookService {
             throw new BookNotFoundException(String.format(BOOK_NOT_FOUND_MESSAGE_TEMPLATE, id));
         }
 
+        Author author = authorService.findByName(bookDto.getAuthor().getFirstName(), bookDto.getAuthor().getLastName());
         Book book = BookDto.mapToBook(bookDto);
         book.setIsbn(id);
+        book.setAuthor(author);
 
         return bookRepository.save(book);
     }

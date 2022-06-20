@@ -1,13 +1,5 @@
-.form-control {
-    margin: 10px 0;
-}
-
-.btn {
-    margin: 10px 0;
-}
-
 nav {
-    margin-bottom: 35px;
+    margin-bottom: 15px;
 }
 
 .nav-bar-nav {
@@ -24,6 +16,11 @@ li .nav-link {
     font-weight: 600;
 }
 
-.nav-item:hover {
-    cursor: pointer;
+.btn-danger {
+    margin-left: 10px;
+}
+
+.filter {
+    width: 40%;
+    margin: 20px 0 30px 50px;
 }

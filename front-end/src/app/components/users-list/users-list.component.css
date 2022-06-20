@@ -20,7 +20,7 @@ li .nav-link {
     margin-left: 10px;
 }
 
-.user-email-form {
+.book-isbn-form {
     display: flex;
     margin: 15px;
     padding: 10px;
@@ -28,8 +28,7 @@ li .nav-link {
     width: 80%;
 }
 
-.user-email-form label{
+.book-isbn-form label{
     margin-right: 5px;
 }
-
 

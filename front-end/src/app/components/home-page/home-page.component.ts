@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  status: boolean = false;
+  status: boolean = true;
   clickEvent(){
       this.status = !this.status;       
   }

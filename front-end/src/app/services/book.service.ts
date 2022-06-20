@@ -15,4 +15,18 @@ export class BookService {
   getAllBooks(): Observable<Book[]> {
     return this.httpClient.get<Book[]>(this.apiUrl);
   }
+
+  getBookByIsbn(isbn: number): Observable<Book> {
+    const url = this.apiUrl + "/" + isbn;
+    return this.httpClient.get<Book>(url);
+  }
+
+  updateBook(booksIsbn: number, book: Book) {
+    const url = this.apiUrl + "/" + booksIsbn;
+    return this.httpClient.put<Book>(url, book);
+  }
+
+  addBook(book: Book): Observable<Book> {
+    return this.httpClient.post<Book>(this.apiUrl, book);
+  }
 }

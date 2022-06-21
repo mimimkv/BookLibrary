@@ -40,7 +40,7 @@ public class UserService {
 
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(
-            () -> new UserNotFoundException(String.format(USER_NOT_FOUND_MESSAGE_TEMPLATE, id)));
+                () -> new UserNotFoundException(String.format(USER_NOT_FOUND_MESSAGE_TEMPLATE, id)));
     }
 
     public User createUser(User user) {
@@ -80,7 +80,7 @@ public class UserService {
 
     public User getUserByEmail(String email) throws UserNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(
-            () -> new UserNotFoundException(String.format(INVALID_EMAIL_MESSAGE_TEMPLATE, email)));
+                () -> new UserNotFoundException(String.format(INVALID_EMAIL_MESSAGE_TEMPLATE, email)));
     }
 
     private boolean userExists(Long id) {

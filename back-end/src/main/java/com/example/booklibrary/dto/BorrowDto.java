@@ -12,6 +12,7 @@ import java.util.Objects;
 public class BorrowDto {
     private Long id;
     private LocalDate borrowDate;
+    private LocalDate returnDate;
     @Valid
     @NotNull
     private PlainUserDto plainUserDto;
@@ -20,10 +21,10 @@ public class BorrowDto {
     private PlainBookDto plainBookDto;
 
     public static BorrowDto from(Borrow borrow) {
-        System.out.println(borrow.getBorrowDate());
         BorrowDto borrowDto = new BorrowDto();
         borrowDto.setId(borrow.getId());
         borrowDto.setBorrowDate(borrow.getBorrowDate());
+        borrowDto.setReturnDate(borrow.getReturnDate());
         if (Objects.nonNull(borrow.getUser())) {
             borrowDto.setPlainUserDto(PlainUserDto.from(borrow.getUser()));
         }

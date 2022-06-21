@@ -9,10 +9,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class BorrowService {
+    private static final int BORROW_DAYS = 20;
+
     private BorrowRepository borrowRepository;
 
     @Autowired
@@ -21,6 +24,7 @@ public class BorrowService {
     }
 
     public Borrow createBorrow(Borrow borrow) {
+        borrow.setReturnDate(LocalDate.now().plusDays(BORROW_DAYS));
         return borrowRepository.save(borrow);
     }
 

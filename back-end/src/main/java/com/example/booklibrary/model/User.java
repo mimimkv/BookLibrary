@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Table(name = "users", uniqueConstraints = { @UniqueConstraint(name = "UniqueEmail", columnNames = {"email"}) })
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(name = "UniqueEmail", columnNames = {"email"})})
 @Entity
 public class User implements Serializable {
 

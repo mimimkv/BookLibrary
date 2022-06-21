@@ -20,19 +20,17 @@ The idea of the project is to develop a web-based library management system. Thi
 
 ---
 ## 📝 Business Requirements
-All users of the system should have the ability to:
-- Create a list with the name
-- Add a book to a specific list
-- Delete a book from a specific list
-- Add some notes for each book.
-- Search for a Book by name in the list.
-- Search a list by name
-- The user can see all available books grouped by some criteria like author,genre, etc.
-- The user should be able to add a new book. Every new book has to have the following information:
-    - Author
-    - Genre
-    - Title
-    - ISBN
+Our app allows to:
+- View a list of all books 
+- Add new books to the list
+- Update book info
+- Borrow a book
+- Add user to the library system
+- Delete user from the system
+- Update user info
+- Users can return books that they have borrowed
+- View present borrows in a list
+- Search in the borrows list by a keyword
   
 ---
 ## 🌊 Git flow

@@ -27,6 +27,6 @@ public class PlainUserDto {
         plainUserDto.setEmail(user.getEmail());
         plainUserDto.setJoinedDate(user.getJoinedDate());
 
-        return  plainUserDto;
+        return plainUserDto;
     }
 }

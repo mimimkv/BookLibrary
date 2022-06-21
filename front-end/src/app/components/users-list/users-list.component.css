@@ -1,0 +1,34 @@
+nav {
+    margin-bottom: 15px;
+}
+
+.nav-bar-nav {
+    padding: 10px;
+}
+
+.nav-item {
+    font-size: 20px;
+    margin: 5px;
+}
+
+li .nav-link {
+    color: white;
+    font-weight: 600;
+}
+
+.btn-danger {
+    margin-left: 10px;
+}
+
+.book-isbn-form {
+    display: flex;
+    margin: 15px;
+    padding: 10px;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.book-isbn-form label{
+    margin-right: 5px;
+}
+

@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-success">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/add-user" routerActive="active" class="nav-link">Add User</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <!-- <h1 class="text-center">{{ title }}</h1> -->
+
+  <div class="container">
+    <h2>Users List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Joined Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.joinedDate}}</td>
+                <td>
+                    <button (click)="updateUser(user.id)" class="btn btn-info">Update</button>
+                    <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+                    <button (click)="returnBorrow(user.id)" class="btn btn-danger">Return Borrow</button>
+                    <form *ngIf="isUserSelected && user.id === selectedUserId" class="book-isbn-form"
+                        (ngSubmit)="submitBookIsbn()">
+                        <div class="form-group">
+                            <label for="bookIsbn">Book Isbn</label>
+                            <input type="text" id="bookIsbn"
+                            [(ngModel)]="bookIsbn" name="bookIsbn">
+                        </div>
+                        <button class="btn btn-success" type="submit">Submit</button>
+                        <button type="button" class="btn btn-danger" (click)="closeBookIsbnForm()">Close</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

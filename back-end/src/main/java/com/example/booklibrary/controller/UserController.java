@@ -1,8 +1,6 @@
 package com.example.booklibrary.controller;
 
 import com.example.booklibrary.dto.UserDto;
-import com.example.booklibrary.exceptions.BookNotFoundException;
-import com.example.booklibrary.exceptions.UserNotFoundException;
 import com.example.booklibrary.model.User;
 import com.example.booklibrary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

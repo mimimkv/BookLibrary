@@ -25,7 +25,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "books", uniqueConstraints = { @UniqueConstraint(name = "UniqueTitle", columnNames = {"title"}) })
+@Table(name = "books", uniqueConstraints = {@UniqueConstraint(name = "UniqueTitle", columnNames = {"title"})})
 public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class Book implements Serializable {
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "author", nullable = true)
+    @JoinColumn(name = "author")
     //@JsonManagedReference
     private Author author;
 

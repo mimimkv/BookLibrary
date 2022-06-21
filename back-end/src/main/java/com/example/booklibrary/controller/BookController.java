@@ -2,7 +2,6 @@ package com.example.booklibrary.controller;
 
 import com.example.booklibrary.dto.BookDto;
 import com.example.booklibrary.dto.PlainBookDto;
-import com.example.booklibrary.exceptions.BookNotFoundException;
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +56,7 @@ public class BookController {
 
     @PutMapping("/books/{id}")
     public ResponseEntity<BookDto> updateBook(@PathVariable Long id, @Valid @RequestBody BookDto bookDto) {
-        Book  book = bookService.updateBook(id, bookDto);
+        Book book = bookService.updateBook(id, bookDto);
         return new ResponseEntity<>(BookDto.from(book), HttpStatus.OK);
     }
 

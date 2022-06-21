@@ -20,7 +20,7 @@ public class BorrowDto {
     private PlainBookDto plainBookDto;
 
     public static BorrowDto from(Borrow borrow) {
-        System.out.println(borrow.getBorrowDate());
+        //System.out.println(borrow.getBorrowDate());
         BorrowDto borrowDto = new BorrowDto();
         borrowDto.setId(borrow.getId());
         borrowDto.setBorrowDate(borrow.getBorrowDate());

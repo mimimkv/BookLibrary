@@ -70,11 +70,13 @@ public class UserService {
     public User borrowBook(Long userId, Long bookIsbn) {
         User user = getUserById(userId);
         Book book = bookService.getBookByIsbn(bookIsbn);
-        Borrow borrow = borrowService.createBorrow(new Borrow());
-        user.borrow(borrow);
+
+        Borrow borrow = new Borrow();
         borrow.setUser(user);
         borrow.setBook(book);
-        //borrow.setBorrowDate("now");
+
+        Borrow createdBorrow = borrowService.createBorrow(borrow);
+        user.borrow(createdBorrow);
         return user;
     }
 

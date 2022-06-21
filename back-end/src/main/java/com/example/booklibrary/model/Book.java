@@ -1,5 +1,7 @@
 package com.example.booklibrary.model;
 
+import com.example.booklibrary.dto.BookDto;
+import com.example.booklibrary.dto.PlainBookDto;
 import com.example.booklibrary.model.enums.Category;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,5 +54,15 @@ public class Book implements Serializable {
         this.title = title;
         this.author = author;
         this.category = category;
+    }
+
+    public static Book from(PlainBookDto plainBookDto) {
+        Book book = new Book();
+        book.setIsbn(plainBookDto.getIsbn());
+        book.setTitle(plainBookDto.getTitle());
+        book.setAuthor(plainBookDto.getAuthor());
+        book.setCategory(plainBookDto.getCategory());
+
+        return book;
     }
 }

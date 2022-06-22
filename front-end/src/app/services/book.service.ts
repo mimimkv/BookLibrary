@@ -4,25 +4,24 @@ import { Observable } from 'rxjs';
 import { Book } from '../model/Book';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookService {
+  private apiUrl = 'http://localhost:8080/library/books';
 
-  private apiUrl = "http://localhost:8080/library/books";
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getAllBooks(): Observable<Book[]> {
     return this.httpClient.get<Book[]>(this.apiUrl);
   }
 
   getBookByIsbn(isbn: number): Observable<Book> {
-    const url = this.apiUrl + "/" + isbn;
+    const url = this.apiUrl + '/' + isbn;
     return this.httpClient.get<Book>(url);
   }
 
   updateBook(booksIsbn: number, book: Book) {
-    const url = this.apiUrl + "/" + booksIsbn;
+    const url = this.apiUrl + '/' + booksIsbn;
     return this.httpClient.put<Book>(url, book);
   }
 

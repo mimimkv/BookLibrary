@@ -24,7 +24,7 @@ class BookDtoTest {
 
         Book actual = BookDto.mapToBook(bookDto);
         assertEquals(expected, actual,
-                "Method does not convert properly an instance of BookDto to Book object");
+            "Method does not convert properly an instance of BookDto to Book object");
     }
 
     @Test
@@ -40,6 +40,6 @@ class BookDtoTest {
 
         BookDto actual = BookDto.from(book);
         assertEquals(expected, actual,
-                "Method does not convert properly an instance of Book to BookDto object");
+            "Method does not convert properly an instance of Book to BookDto object");
     }
 }

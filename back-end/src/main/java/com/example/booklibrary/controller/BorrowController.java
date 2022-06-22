@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("library/borrows")
@@ -38,7 +36,7 @@ public class BorrowController {
     @GetMapping("")
     public ResponseEntity<Page<BorrowDto>> getAllBorrows(Pageable page) {
         Page<Borrow> borrows = borrowService.getAllBorrows(page);
-        Page<BorrowDto> borrowsDtoList =borrows.map(BorrowDto::from);
+        Page<BorrowDto> borrowsDtoList = borrows.map(BorrowDto::from);
 
         return new ResponseEntity<>(borrowsDtoList, HttpStatus.OK);
     }

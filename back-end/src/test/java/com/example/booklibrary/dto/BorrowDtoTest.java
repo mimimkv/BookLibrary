@@ -20,7 +20,7 @@ class BorrowDtoTest {
 
         BorrowDto actual = BorrowDto.from(borrow);
         assertEquals(expected, actual,
-                "Method does not correctly convert object of type Borrow to object of type BorrowDto");
+            "Method does not correctly convert object of type Borrow to object of type BorrowDto");
     }
 
 }

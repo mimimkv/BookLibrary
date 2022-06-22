@@ -10,50 +10,39 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
-  styleUrls: ['./books-list.component.css']
+  styleUrls: ['./books-list.component.css'],
 })
 export class BooksListComponent implements OnInit {
-
-  title: string = "Book Library";
+  title: string = 'Book Library';
   books: Book[] = [];
   isBookSelected = false;
-  userEmail: string = "";
+  userEmail: string = '';
   selectedBookId: number = -1;
   errorMessage: string;
   selectedUserId: number;
 
-  constructor(private bookService: BookService, private userService: UserService,
-    private router: Router) { }
+  constructor(
+    private bookService: BookService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.bookService.getAllBooks()
-      .subscribe((books) => this.books = books);
-      console.log(this.books);
+    this.bookService.getAllBooks().subscribe((books) => (this.books = books));
+    console.log(this.books);
   }
 
   borrow(bookIsbn: number) {
-      this.isBookSelected = true;
-      this.selectedBookId = bookIsbn;
+    this.isBookSelected = true;
+    this.selectedBookId = bookIsbn;
   }
 
   async borrowBook(bookIsbn: number, userEmail: string) {
-     /* this.userService.getUserByEmail(userEmail)
-      .subscribe((user: User) => {
-        this.selectedUserId = user.id;
-      });*/
-      console.log('>>>>>>>>>>>>>>>>>>> ');
-      this.selectedUserId = await this.userService.getUserByEmail(userEmail);
-      // .then((id) => {
-      //   this.selectedUserId = id;
-      //   console.log(this.selectedUserId)
-      // });
+    this.selectedUserId = await this.userService.getUserByEmail(userEmail);
 
-      console.log('>>>>>>>>>>>>>>>>>>> ');
-
-      //fix: We have to wait for the upper operation to use the value of 
-      //selectedUserId below()
-      this.userService.borrowBook(bookIsbn, this.selectedUserId)
-        .subscribe((user) => console.log(this.selectedUserId));
+    this.userService
+      .borrowBook(bookIsbn, this.selectedUserId)
+      .subscribe((user) => console.log(this.selectedUserId));
   }
 
   submitEmail() {
@@ -67,7 +56,6 @@ export class BooksListComponent implements OnInit {
   }
 
   updateBook(isbn: number) {
-    this.router.navigate(["update-book", isbn]);
+    this.router.navigate(['update-book', isbn]);
   }
-
 }

@@ -1,12 +1,10 @@
 package com.example.booklibrary.model;
 
-import com.example.booklibrary.dto.BookDto;
 import com.example.booklibrary.dto.PlainBookDto;
 import com.example.booklibrary.model.enums.Category;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,15 +36,12 @@ public class Book implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author")
-    //@JsonManagedReference
     private Author author;
 
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "category")
     private Category category;
 
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "book_id")
     @OneToMany(mappedBy = "book")
     private List<Borrow> borrows = new ArrayList<>();
 

@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/library") //-> localhost:8080/library
+@RequestMapping("/library")
 @CrossOrigin
 public class BookController {
 
@@ -62,12 +62,6 @@ public class BookController {
 
     @DeleteMapping("/books/{isbn}")
     public ResponseEntity<Map<String, Boolean>> deleteBook(@PathVariable Long isbn) {
-        /*try {
-            bookService.deleteBook(isbn);
-        } catch (BookNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }*/
-
         bookService.deleteBook(isbn);
 
         Map<String, Boolean> response = new HashMap<>();

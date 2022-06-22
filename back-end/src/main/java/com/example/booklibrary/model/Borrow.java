@@ -1,8 +1,6 @@
 package com.example.booklibrary.model;
 
 import com.example.booklibrary.dto.BorrowDto;
-import com.example.booklibrary.dto.PlainUserDto;
-import com.example.booklibrary.dto.UserDto;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 

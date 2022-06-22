@@ -37,7 +37,6 @@ class BookServiceTest {
 
     @BeforeEach
     void setUp() {
-        //bookService = new BookService(bookRepository);
         bookService = new BookService(bookRepository, authorService);
         Mockito.lenient().
             when(authorService.findByName("firstName", "lastName")).thenReturn(new Author("firstName", "lastName"));
@@ -73,7 +72,7 @@ class BookServiceTest {
     @Test
     public void testGetAllBooksEmptyListIsReturned() {
         Assertions.assertEquals(Collections.emptyList(), bookService.getAllBooks(),
-                "Method should return an empty list when there are no books in the repository");
+            "Method should return an empty list when there are no books in the repository");
     }
 
     @Test
@@ -91,7 +90,7 @@ class BookServiceTest {
     public void testGetBookByIsbnThrowsExceptionNoBooksInRepo() {
         when(bookRepository.findById(anyLong())).thenReturn(Optional.empty());
         assertThrows(BookNotFoundException.class, () -> bookService.getBookByIsbn(1L),
-                "BookNotFoundException expected when there are no books in the repository");
+            "BookNotFoundException expected when there are no books in the repository");
     }
 
     @Test
@@ -104,18 +103,18 @@ class BookServiceTest {
         when(bookRepository.save(any())).thenReturn(BookDto.mapToBook(bookDto));
 
         assertEquals(bookDto.getTitle(), bookService.createBook(bookDto).getTitle(),
-                "CreateBook method in BookService does not create and does not return the correct book");
+            "CreateBook method in BookService does not create and does not return the correct book");
     }
 
     @Test
     public void testUpdateBookThrowsException() {
         assertThrows(BookNotFoundException.class, () -> bookService.updateBook(1L, null),
-                "BookNotFoundException expected when there is no such book in the repository");
+            "BookNotFoundException expected when there is no such book in the repository");
     }
 
     @Test
     public void testDeleteBookThrowsExceptionNoSuchBook() {
         assertThrows(BookNotFoundException.class, () -> bookService.deleteBook(1L),
-                "BookNotFoundException expected when there is no such book in the repository");
+            "BookNotFoundException expected when there is no such book in the repository");
     }
 }

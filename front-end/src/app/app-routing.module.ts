@@ -10,19 +10,19 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
 import { UsersListComponent } from './components/users-list/users-list.component';
 
 const routes: Routes = [
-  {path: "home", component: HomePageComponent},
-  {path: "", redirectTo: "home", pathMatch: "full"},
-  {path: "books-list", component: BooksListComponent},
-  {path: "add-book", component: AddBookComponent},
-  {path: "users-list", component: UsersListComponent},
-  {path: "add-user", component: AddUserComponent},
-  {path: "borrows-list", component: BorrowsListComponent},
-  {path: "update-book/:isbn", component: UpdateBookComponent},
-  {path: "update-user/:id", component: UpdateUserComponent}
+  { path: 'home', component: HomePageComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'books-list', component: BooksListComponent },
+  { path: 'add-book', component: AddBookComponent },
+  { path: 'users-list', component: UsersListComponent },
+  { path: 'add-user', component: AddUserComponent },
+  { path: 'borrows-list', component: BorrowsListComponent },
+  { path: 'update-book/:isbn', component: UpdateBookComponent },
+  { path: 'update-user/:id', component: UpdateUserComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

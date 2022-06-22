@@ -12,7 +12,7 @@ class UserTest {
 
     @Test
     public void testBorrowAddOneBorrow() {
-        LocalDate date = LocalDate.of(2000, 12,21);
+        LocalDate date = LocalDate.of(2000, 12, 21);
         Borrow borrow = new Borrow();
         borrow.setBorrowDate(date);
 
@@ -22,7 +22,7 @@ class UserTest {
         List<Borrow> expected = List.of(borrow);
         List<Borrow> actual = user.getBorrows();
         assertIterableEquals(expected, actual,
-                "Method borrow() does not add the borrow");
+            "Method borrow() does not add the borrow");
     }
 
     @Test
@@ -43,7 +43,7 @@ class UserTest {
 
         User actual = User.from(userDto);
         assertEquals(expected, actual,
-                "Method does not correctly convert object of type UserDto to object of type User"
+            "Method does not correctly convert object of type UserDto to object of type User"
         );
     }
 }

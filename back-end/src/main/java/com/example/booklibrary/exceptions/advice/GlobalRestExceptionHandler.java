@@ -30,16 +30,14 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status,
                                                                   WebRequest request) {
-        //String bodyOfResponse = "{ \"error\": \"" + ex.getMessage() + "\" }";
-        //return new ResponseEntity<>(bodyOfResponse, HttpStatus.BAD_REQUEST);
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult()
-                .getAllErrors()
-                .forEach((error) -> {
-                    String fieldName = ((FieldError) error).getField();
-                    String message = error.getDefaultMessage();
-                    errors.put(fieldName, message);
-                });
+            .getAllErrors()
+            .forEach((error) -> {
+                String fieldName = ((FieldError) error).getField();
+                String message = error.getDefaultMessage();
+                errors.put(fieldName, message);
+            });
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }

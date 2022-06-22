@@ -7,10 +7,9 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.css']
+  styleUrls: ['./users-list.component.css'],
 })
 export class UsersListComponent implements OnInit {
-
   users: User[] = [];
 
   bookIsbn: number;
@@ -18,28 +17,29 @@ export class UsersListComponent implements OnInit {
   selectedUserId: number = -1;
   isUserSelected: boolean = false;
 
-  constructor(private userService: UserService, private borrowService: BorrowService,
-    private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private borrowService: BorrowService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllUsers();
   }
 
   getAllUsers() {
-    this.userService.getAllUsers()
-      .subscribe((users) => this.users = users);
+    this.userService.getAllUsers().subscribe((users) => (this.users = users));
   }
 
   updateUser(id: number) {
-    this.router.navigate(["/update-user", id]);
+    this.router.navigate(['/update-user', id]);
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id)
-      .subscribe(() => {
-        console.log("User " + id + " was deleted")
-        this.getAllUsers();
-      });
+    this.userService.deleteUser(id).subscribe(() => {
+      console.log('User ' + id + ' was deleted');
+      this.getAllUsers();
+    });
   }
 
   returnBorrow(userId: number) {
@@ -48,10 +48,14 @@ export class UsersListComponent implements OnInit {
   }
 
   async removeBorrow(userId: number, bookIsbn: number) {
-    this.selectedBorrowId = await this.borrowService.getBorrow(userId, bookIsbn);
+    this.selectedBorrowId = await this.borrowService.getBorrow(
+      userId,
+      bookIsbn
+    );
 
-    this.borrowService.deleteBorrow(this.selectedBorrowId)
-      .subscribe(() => console.log(this.selectedBorrowId))
+    this.borrowService
+      .deleteBorrow(this.selectedBorrowId)
+      .subscribe(() => console.log(this.selectedBorrowId));
   }
 
   submitBookIsbn() {

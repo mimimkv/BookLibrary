@@ -22,7 +22,7 @@ class PlainBookDtoTest {
         PlainBookDto actual = PlainBookDto.from(book);
 
         assertEquals(expected, actual,
-                "Method does not correctly convert object of type Book to object of type PlainBookDto");
+            "Method does not correctly convert object of type Book to object of type PlainBookDto");
     }
 
 }

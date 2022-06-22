@@ -25,7 +25,7 @@ class UserDtoTest {
 
         UserDto actual = UserDto.from(user);
         assertEquals(expected, actual,
-                "Method does not correctly convert object of type User to object of type UserDto"
+            "Method does not correctly convert object of type User to object of type UserDto"
         );
     }
 }

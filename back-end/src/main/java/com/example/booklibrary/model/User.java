@@ -42,8 +42,6 @@ public class User implements Serializable {
     @CreationTimestamp
     private LocalDate joinedDate;
 
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "user_id")
     @OneToMany(mappedBy = "user")
     private List<Borrow> borrows = new ArrayList<>();
 

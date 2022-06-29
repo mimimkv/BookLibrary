@@ -25,7 +25,7 @@ class PlainUserDtoTest {
 
         PlainUserDto actual = PlainUserDto.from(user);
         assertEquals(expected, actual,
-                "Method does not correctly convert object of type User to object of type PlainUserDto"
+            "Method does not correctly convert object of type User to object of type PlainUserDto"
         );
     }
 }

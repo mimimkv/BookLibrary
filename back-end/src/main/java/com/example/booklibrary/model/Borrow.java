@@ -12,21 +12,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "borrows")
+@Table(name = "borrows", uniqueConstraints = {
+    @UniqueConstraint(name = "UniqueUserAndBook", columnNames = {"user_id", "book_id"})})
 @Data
 public class Borrow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //    @Column
-//    private String borrowDate;
     @Column
     @CreationTimestamp
     private LocalDate borrowDate;
+
+    @Column
+    private LocalDate returnDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -38,8 +41,12 @@ public class Borrow {
 
     public static Borrow from(BorrowDto borrowDto) {
         Borrow borrow = new Borrow();
+        borrow.setId(borrowDto.getId());
         borrow.setBorrowDate(borrowDto.getBorrowDate());
-        // todo set book and user
+        borrow.setReturnDate(borrowDto.getReturnDate());
+        borrow.setUser(User.from(borrowDto.getPlainUserDto()));
+        borrow.setBook(Book.from(borrowDto.getPlainBookDto()));
+
         return borrow;
     }
 }

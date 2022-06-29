@@ -1,5 +1,6 @@
 package com.example.booklibrary.model;
 
+import com.example.booklibrary.dto.PlainUserDto;
 import com.example.booklibrary.dto.UserDto;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -41,8 +42,6 @@ public class User implements Serializable {
     @CreationTimestamp
     private LocalDate joinedDate;
 
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "user_id")
     @OneToMany(mappedBy = "user")
     private List<Borrow> borrows = new ArrayList<>();
 
@@ -51,6 +50,17 @@ public class User implements Serializable {
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
+
+        return user;
+    }
+
+    public static User from(PlainUserDto plainUserDto) {
+        User user = new User();
+        user.setId(plainUserDto.getId());
+        user.setFirstName(plainUserDto.getFirstName());
+        user.setLastName(plainUserDto.getLastName());
+        user.setEmail(plainUserDto.getEmail());
+        user.setJoinedDate(plainUserDto.getJoinedDate());
 
         return user;
     }

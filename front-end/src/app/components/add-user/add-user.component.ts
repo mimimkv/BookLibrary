@@ -6,32 +6,32 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  styleUrls: ['./add-user.component.css'],
 })
 export class AddUserComponent implements OnInit {
-
   user: User = new User();
   errorObj: Object = null;
 
-  constructor(private userSerice: UserService, private router: Router) { }
+  constructor(private userSerice: UserService, private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   goToUsersList() {
-    this.router.navigate(["/users-list"]);
+    this.router.navigate(['/users-list']);
   }
 
   addUser() {
-    this.userSerice.addUser(this.user)
-      .subscribe(() => {
-        this.goToUsersList()
-      }, (error: any) => {
-        console.log(error)
+    this.userSerice.addUser(this.user).subscribe(
+      () => {
+        this.goToUsersList();
+      },
+      (error: any) => {
+        console.log(error);
         if (error.status == 400) {
           this.errorObj = error.error;
         }
-      });
+      }
+    );
   }
 
   onSubmit() {

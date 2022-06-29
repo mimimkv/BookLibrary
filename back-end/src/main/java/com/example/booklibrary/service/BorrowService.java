@@ -9,11 +9,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Service
 public class BorrowService {
-    private BorrowRepository borrowRepository;
+    private static final int BORROW_DAYS = 20;
+
+    private final BorrowRepository borrowRepository;
 
     @Autowired
     public BorrowService(BorrowRepository borrowRepository) {
@@ -21,6 +23,7 @@ public class BorrowService {
     }
 
     public Borrow createBorrow(Borrow borrow) {
+        borrow.setReturnDate(LocalDate.now().plusDays(BORROW_DAYS));
         return borrowRepository.save(borrow);
     }
 
@@ -30,7 +33,7 @@ public class BorrowService {
 
     public Borrow getBorrowById(Long id) throws BorrowNotFoundException {
         return borrowRepository.findById(id)
-                .orElseThrow(() -> new BorrowNotFoundException("This borrow cannot be found."));
+            .orElseThrow(() -> new BorrowNotFoundException("This borrow cannot be found."));
     }
 
     public Borrow getBorrow(Long userId, Long bookIsbn) {
